@@ -3,57 +3,46 @@
   <head>
     <title>Threelab</title>
     <script src="https://www.gstatic.com/firebasejs/5.9.2/firebase.js"></script>
-    <script>
-      function getParameterByName(name, url) {
-        if (!url) url = window.location.href;
-        name = name.replace(/[\[\]]/g, "\\$&");
-        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-          results = regex.exec(url);
-        if (!results) return null;
-        if (!results[2]) return "";
-        return decodeURIComponent(results[2].replace(/\+/g, " "));
+    <style>
+      html,
+      body {
+        background-color: #fff;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        overflow: hidden;
       }
 
-      function handleVerifyEmail(auth, actionCode, continueUrl, lang) {
-        auth
-          .applyActionCode(actionCode)
-          .then(function(resp) {
-            document.getElementById("response").innerHTML =
-              "E-mail verificado!";
-          })
-          .catch(function(error) {
-            document.getElementById("response").innerHTML =
-              "Error al verificar el e-mail";
-          });
+      #response {
+        text-align: center;
+        margin: 50px 0 0 0;
+        font-size: 3em;
+        font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+          "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+        color: #999999;
       }
 
-      document.addEventListener(
-        "DOMContentLoaded",
-        function() {
-          var mode = getParameterByName("mode");
-          var actionCode = getParameterByName("oobCode");
-          var continueUrl = getParameterByName("continueUrl");
-          var lang = getParameterByName("lang") || "en";
+      #success {
+        margin: 0 auto;
+        width: 50%;
+        height: 50%;
+        display: none;
+      }
 
-          var config = {
-            apiKey: "AIzaSyCJy2qD-0y07hLqKDBgA4nxbugmDfNCkSo"
-          };
-          var app = firebase.initializeApp(config);
-          var auth = app.auth();
-
-          switch (mode) {
-            case "verifyEmail":
-              handleVerifyEmail(auth, actionCode, continueUrl, lang);
-              break;
-            default:
-          }
-        },
-        false
-      );
-    </script>
-    <style></style>
+      #error {
+        margin: 0 auto;
+        width: 50%;
+        height: 50%;
+        display: none;
+      }
+    </style>
   </head>
   <body>
     <p id="response"></p>
+    <div id="success"></div>
+    <div id="error"></div>
+
+    <script src="bodymovin.js"></script>
+    <script src="index.js"></script>
   </body>
 </html>
