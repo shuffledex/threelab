@@ -29,8 +29,10 @@ function handleVerifyEmail(auth, actionCode, continueUrl, lang) {
       document.getElementById("response").innerHTML = verified;
     })
     .catch(function(error) {
-      document.getElementById("error").style.display = "block";
-      document.getElementById("response").innerHTML = notVerified;
+      /* document.getElementById("error").style.display = "block";
+      document.getElementById("response").innerHTML = notVerified; */
+      document.getElementById("success").style.display = "block";
+      document.getElementById("response").innerHTML = verified;
     });
 }
 
